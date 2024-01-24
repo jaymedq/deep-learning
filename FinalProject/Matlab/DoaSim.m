@@ -1,5 +1,5 @@
 % Specify the number of samples
-N = 360;
+N = 1080;
 
 % Generate the Bluetooth dataset
 bluetoothDataset = generateUraBluetoothDataset(N);
