@@ -10,7 +10,7 @@ function dataset = generateUraBluetoothDataset(N)
     array = phased.URA('Size', arraySize, 'ElementSpacing', arraySpacing);
 
     % Generate angles from 1 to 640 with wraparound from 180 to -180
-    angles = mod(0:N, 361) - 180;
+    angles = mod(0:N-1, 361) - 180;
 
     % Simulate the received signals
     x = sensorsig(getElementPosition(array)/lambda, N, angles, db2pow(-10));
