@@ -1,8 +1,9 @@
 % Specify the number of samples (Take X as number of turns on the axis 360 * X + X)
-N = 18100;
+N = 36200;%18100;
 
 % Generate the Bluetooth dataset
 bluetoothDataset = generateUraBluetoothDataset(N);
+%bluetoothDataset = generateUlaBluetoothDataset(N);
 
 % Display some information about the generated dataset
 disp('Bluetooth Dataset Information:');
@@ -19,8 +20,9 @@ datetimeString = datestr(now, 'yyyy-mm-dd_HH-MM-SS');
 
 % Save the dataset as CSV with datetime in the title
 csvFileName = ['bluetooth_signals_dataset_', datetimeString, '.csv'];
-writematrix([bluetoothDataset.Angles', bluetoothDataset.Signals], csvFileName);
-% writematrix(, 'bluetooth_angles_dataset.csv');
+writematrix(bluetoothDataset.Signals', ['Signals',csvFileName]);
+writematrix(bluetoothDataset.Angles', ['Angles',csvFileName]);
+writematrix(bluetoothDataset.MusicAngles', ['MusicAngles',csvFileName]);
 
 subplot(2, 1, 1);
 plot(1:N, abs(bluetoothDataset.Signals));
@@ -35,4 +37,5 @@ title('True and Estimated Angles of Arrival');
 xlabel('Sample');
 ylabel('Angle (degrees)');
 legend('True Angles');
+
 
