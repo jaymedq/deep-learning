@@ -1,5 +1,5 @@
 % Specify the number of samples (Take X as number of turns on the axis 360 * X + X)
-N = 36200;%18100;
+N = 90;%18100;
 
 % Generate the Bluetooth dataset
 bluetoothDataset = generateUraBluetoothDataset(N);
@@ -27,15 +27,20 @@ writematrix(bluetoothDataset.MusicAngles', ['MusicAngles',csvFileName]);
 subplot(2, 1, 1);
 plot(1:N, abs(bluetoothDataset.Signals));
 title('Received Signals');
-xlabel('Sample');
-ylabel('Amplitude');
+xlabel('Sample N');
+ylabel('Complex Magnitude');
 
 subplot(2, 1, 2);
-stem(bluetoothDataset.Angles, 'r', 'DisplayName', 'True Angles');
 hold on;
-title('True and Estimated Angles of Arrival');
-xlabel('Sample');
+
+stem(bluetoothDataset.Angles);
+stem(bluetoothDataset.MusicAngles);
+
+hold off;
+title('True and Estimated Direction of Arrival');
+%title('Direction of Arrival');
+xlabel('Sample N');
 ylabel('Angle (degrees)');
-legend('True Angles');
+legend('True Angles', 'Music Angles');
 
 
